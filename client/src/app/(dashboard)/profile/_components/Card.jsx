@@ -1,29 +1,31 @@
-import {
-  UserGroupIcon,
-  ChatBubbleBottomCenterTextIcon,
-  DocumentIcon,
-} from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { focusRing } from "@/app/(blogs)/_components/home/PostMeta";
 
-const iconMap = {
-  comments: ChatBubbleBottomCenterTextIcon,
-  users: UserGroupIcon,
-  posts: DocumentIcon,
-};
+export const cardClass =
+  "rounded-2xl border border-secondary-200/70 bg-secondary-0 shadow-[0_8px_30px_-12px] shadow-primary-900/10 dark:shadow-none";
 
-export function Card({ title, value, type }) {
-  const Icon = iconMap[type];
+export function Card({ className = "", children }) {
+  return <section className={`${cardClass} p-5 md:p-6 ${className}`}>{children}</section>;
+}
 
+export function CardHeader({ icon: Icon, title, href, children }) {
   return (
-    <div className="rounded-xl bg-secondary-50 p-2 shadow-sm">
-      <div className="flex p-4 text-secondary-600">
-        {Icon ? <Icon className="h-5 w-5" /> : null}
-        <h3 className="mr-2 text-sm font-medium">{title}</h3>
-      </div>
-      <p
-        className={`truncate rounded-xl bg-secondary-0 px-4 py-8 text-center text-2xl text-secondary-500`}
-      >
-        {value}
-      </p>
+    <div className="flex items-center justify-between gap-3 mb-5">
+      <h2 className="flex items-center gap-x-3 text-base md:text-lg font-bold text-secondary-900">
+        {Icon && <Icon className="w-6 h-6 text-primary-900" aria-hidden="true" />}
+        {title}
+      </h2>
+      {children}
+      {href && (
+        <Link
+          href={href}
+          className={`inline-flex items-center gap-x-1 text-sm font-medium text-primary-900 hover:text-primary-700 ${focusRing}`}
+        >
+          مشاهده همه
+          <ArrowLeftIcon className="w-4 h-4" aria-hidden="true" />
+        </Link>
+      )}
     </div>
   );
 }

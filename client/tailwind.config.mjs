@@ -12,6 +12,8 @@ function withOpacity(variableName) {
 }
 
 const tailwindConfig = {
+  // dark: variants follow the .dark-mode class that ThemeToggle puts on <html>
+  darkMode: ["selector", ".dark-mode"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
@@ -26,6 +28,7 @@ const tailwindConfig = {
           300: withOpacity("--color-primary-300"),
           200: withOpacity("--color-primary-200"),
           100: withOpacity("--color-primary-100"),
+          50: withOpacity("--color-primary-50"),
         },
         secondary: {
           900: withOpacity("--color-secondary-900"),
@@ -37,6 +40,7 @@ const tailwindConfig = {
           300: withOpacity("--color-secondary-300"),
           200: withOpacity("--color-secondary-200"),
           100: withOpacity("--color-secondary-100"),
+          50: withOpacity("--color-secondary-50"),
           0: withOpacity("--color-secondary-0"),
         },
         success: withOpacity("--color-success"),

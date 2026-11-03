@@ -12,6 +12,7 @@
       "@/styles/*": ["styles/*"],
       "@/providers/*": ["providers/*"],
       "@/ui/*": ["ui/*"],
+      "@/app/*": ["app/*"],
       "@/constants/*": ["constants/*"],
       "@/public/*": ["public/*"]
 
