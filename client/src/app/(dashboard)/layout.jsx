@@ -17,8 +17,9 @@ export default function RootLayout({ children }) {
       </aside>
       <div className="flex-1 min-w-0">
         <Header />
-        {/* extra bottom padding on phones clears the fixed MobileTabBar + iOS home indicator */}
-        <main className="px-4 md:px-6 xl:px-8 pt-2 pb-[calc(6.5rem_+_env(safe-area-inset-bottom))] md:pb-10">
+        {/* extra bottom padding on phones clears the fixed MobileTabBar + iOS home indicator.
+            isolate: page z-indexes stay inside main, so the sticky Header (z-[8]) is always on top */}
+        <main className="isolate px-4 md:px-6 xl:px-8 pt-2 pb-[calc(6.5rem_+_env(safe-area-inset-bottom))] md:pb-10">
           <div className="mx-auto max-w-screen-2xl">{children}</div>
         </main>
       </div>

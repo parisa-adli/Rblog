@@ -9,7 +9,7 @@ export default function WelcomeHeader() {
 
   return (
     <div className="relative flex items-center gap-4 overflow-hidden">
-      <div className="relative z-10 flex-1 min-w-0">
+      <div className="flex-1 min-w-0">
         <p className="inline-block mb-2 xl:mb-3 rounded-full bg-primary-100 dark:bg-primary-900/20 px-3 py-1 text-xs md:text-sm font-medium text-primary-900 xl:bg-transparent xl:dark:bg-transparent xl:p-0 xl:font-bold xl:tracking-wide">
           خوش برگشتی
           {firstName && <span className="hidden xl:inline">، {firstName}</span>}!
