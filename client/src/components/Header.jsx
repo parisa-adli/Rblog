@@ -1,55 +1,65 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import NavLink from "./NavLink";
 import Avatar from "@/ui/Avatar";
+import ThemeToggle from "@/app/(dashboard)/profile/_components/ThemeToggle";
+import { focusRing } from "@/app/(blogs)/_components/home/PostMeta";
 
+// same links as the footer
 const navLinks = [
-  {
-    id: 1,
-    children: "خانه",
-    path: "/",
-  },
-  {
-    id: 2,
-    children: "بلاگ ها",
-    path: "/blogs",
-  },
+  { path: "/", label: "خانه" },
+  { path: "/blogs", label: "بلاگ‌ها" },
+  { path: "/about", label: "درباره ما" },
 ];
 
 function Header() {
   const { user, isLoading } = useAuth();
 
   return (
-    <header
-      className={`z-10 shadow-md bg-inherit mb-10 sticky top-0 transition-all duration-200 border-b border-b-secondary-300 ${
-        isLoading
-          ? "blur-sm opacity-70 pointer-events-none"
-          : "opacity-100 blur-0"
-      }`}
-    >
-      <nav className="container xl:max-w-screen-xl">
-        <ul className="flex items-center text-secondary-400 justify-between py-2">
-          <div className="flex items-center gap-x-10">
-            {navLinks.map((navLink) => {
-              return (
-                <li key={navLink.id}>
-                  <NavLink path={navLink.path}>{navLink.children}</NavLink>
+    <header className="sticky top-0 z-30 mb-10 border-b border-secondary-200 bg-secondary-0/80 backdrop-blur-md">
+      <div className="container xl:max-w-screen-xl flex items-center justify-between gap-x-6 h-16">
+        <div className="flex items-center gap-x-6 md:gap-x-10">
+          <Link href="/" className={`shrink-0 ${focusRing}`} aria-label="Rblog - خانه">
+            {/* one logo per theme; .dark-mode swaps which is visible (same as the footer) */}
+            <Image src="/logo/rblog-logo.svg" alt="Rblog" width={110} height={30} className="[.dark-mode_&]:hidden" priority />
+            <Image src="/logo/rblog-logo-dark.svg" alt="Rblog" width={110} height={30} className="hidden [.dark-mode_&]:block" priority />
+          </Link>
+          <nav aria-label="منوی اصلی">
+            <ul className="flex items-center gap-x-5 md:gap-x-8">
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <NavLink path={link.path}>{link.label}</NavLink>
                 </li>
-              );
-            })}
-          </div>
-          <li>
-            {user ? (
-              <NavLink path="/profile">
-                <Avatar src={user?.avatarUrl} />
-              </NavLink>
-            ) : (
-              <NavLink path="/signin">ورود</NavLink>
-            )}
-          </li>
-        </ul>
-      </nav>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className={`flex items-center gap-x-3 transition-opacity ${isLoading ? "opacity-50 pointer-events-none" : ""}`}>
+          <ThemeToggle
+            className={`p-2 text-secondary-600 hover:text-primary-900 hover:bg-secondary-100 rounded-full transition-colors ${focusRing}`}
+          />
+          {user ? (
+            <Link
+              href="/profile"
+              className={`flex items-center gap-x-2 text-sm font-bold text-secondary-700 hover:text-primary-900 transition-colors ${focusRing}`}
+            >
+              <Avatar src={user.avatarUrl} width={32} />
+              <span className="hidden md:inline">داشبورد</span>
+            </Link>
+          ) : (
+            <Link
+              href="/signin"
+              className={`text-sm font-bold text-secondary-0 bg-primary-900 hover:bg-primary-800 px-5 py-2 rounded-full transition-colors ${focusRing}`}
+            >
+              ورود
+            </Link>
+          )}
+        </div>
+      </div>
     </header>
   );
 }
