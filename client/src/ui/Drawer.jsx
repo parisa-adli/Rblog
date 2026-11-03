@@ -15,10 +15,8 @@ function Drawer({ open, onClose, children }) {
         className={`fixed top-0 right-0 w-[250px] h-full transition-transform transform z-20 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
-        onClick={(event) => {
-          event.preventDefault();
-          event.stopPropagation();
-        }}
+        // no preventDefault here: it blocked native links (e.g. target="_blank") inside the drawer
+        onClick={(event) => event.stopPropagation()}
       >
         <div className="bg-secondary-0 max-h-full overflow-y-auto">
           {children}

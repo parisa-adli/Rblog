@@ -1,6 +1,9 @@
 import Header from "./profile/_components/Header";
 import SideBar from "./profile/_components/SideBar";
 
+// per-user, cookie-protected pages: never prerender at build (the build failed on /profile/users + /profile/categories)
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "پروفایل",
   description: "پروفایل",
@@ -8,17 +11,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <div className="bg-secondary-0">
-      <div className="grid grid-cols-12 h-screen">
-        <aside className="col-span-12 lg:col-span-3 xl:col-span-2 hidden lg:block">
-          <SideBar />
-        </aside>
-        <div className="col-span-12 lg:col-span-9 xl:col-span-10 h-screen flex flex-col">
-          <Header />
-          <main className="bg-secondary-100 rounded-tr-3xl p-4 md:p-6 lg:p-10 flex-1 overflow-y-auto">
-            <div className="xl:max-w-screen-xl">{children}</div>
-          </main>
-        </div>
+    <div className="min-h-screen bg-secondary-100 lg:flex">
+      <aside className="hidden lg:block w-56 xl:w-64 shrink-0 sticky top-0 h-screen border-l border-secondary-200/70 bg-secondary-0">
+        <SideBar />
+      </aside>
+      <div className="flex-1 min-w-0">
+        <Header />
+        {/* extra bottom padding on phones clears the fixed MobileTabBar + iOS home indicator */}
+        <main className="px-4 md:px-6 xl:px-8 pt-2 pb-[calc(6.5rem_+_env(safe-area-inset-bottom))] md:pb-10">
+          <div className="mx-auto max-w-screen-2xl">{children}</div>
+        </main>
       </div>
     </div>
   );

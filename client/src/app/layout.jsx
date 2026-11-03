@@ -15,7 +15,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" dir="rtl">
+    // suppressHydrationWarning: the inline script may add .dark-mode before React hydrates
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("theme")==="dark")document.documentElement.classList.add("dark-mode")}catch(e){}`,
+          }}
+        />
+      </head>
       <body className={`${vazirFont.variable} font-sans min-h-screen`}>
         <Toaster />
         <ReactQueryProvider>

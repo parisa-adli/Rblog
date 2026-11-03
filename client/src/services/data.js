@@ -12,16 +12,17 @@ export async function fetchCardData() {
     const data = await Promise.all([
       getAllUsersApi(options),
       getAllCommentsApi(options),
-      getPosts(),
+      // limit=1 makes totalPages equal the post count (the default limit of 6 capped it)
+      getPosts("limit=1"),
     ]);
 
     const numberOfUsers = Number(data[0].users.length ?? "0");
     const numberOfComments = Number(data[1].commentsCount ?? "0");
-    const numberOfPosts = Number(data[2].posts.length ?? "0");
+    const numberOfPosts = Number(data[2].totalPages ?? "0");
 
     return { numberOfUsers, numberOfComments, numberOfPosts };
   } catch (error) {
-    console.log(error.response.data.message);
+    console.log(error?.response?.data?.message ?? error);
     throw new Error("خطا در بارگذاری اطلاعات");
   }
 }
