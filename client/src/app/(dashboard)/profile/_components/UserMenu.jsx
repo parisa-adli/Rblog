@@ -14,7 +14,8 @@ import { focusRing } from "@/app/(blogs)/_components/home/PostMeta";
 
 const itemClass = `flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm text-secondary-700 hover:bg-secondary-100 ${focusRing}`;
 
-export default function UserMenu() {
+// hoverClass: the hover must contrast with the header behind it (dashboard: secondary-100, blog: secondary-0)
+export default function UserMenu({ hoverClass = "hover:bg-secondary-0" }) {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
@@ -28,7 +29,7 @@ export default function UserMenu() {
         aria-expanded={open}
         aria-label="منوی کاربر"
         onClick={() => setOpen((o) => !o)}
-        className={`flex items-center gap-x-2 rounded-full p-0.5 xl:pl-2 hover:bg-secondary-0 ${focusRing}`}
+        className={`flex items-center gap-x-2 rounded-full p-0.5 xl:pl-2 ${hoverClass} transition-colors ${focusRing}`}
       >
         <Avatar src={user?.avatarUrl} width={40} />
         <span className="hidden xl:inline text-sm font-medium text-secondary-800">{user?.name}</span>
