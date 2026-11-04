@@ -43,7 +43,7 @@ function Header() {
             className={`p-2 text-secondary-600 hover:text-primary-900 hover:bg-secondary-100 rounded-full transition-colors ${focusRing}`}
           />
           {user ? (
-            <UserMenu />
+            <UserMenu hoverClass="hover:bg-secondary-100" />
           ) : (
             <Link
               href="/signin"
