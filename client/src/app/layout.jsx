@@ -24,7 +24,11 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${vazirFont.variable} font-sans min-h-screen`}>
+      {/* extensions (e.g. ColorZilla's cz-shortcut-listen) inject body attributes before hydration */}
+      <body
+        className={`${vazirFont.variable} font-sans min-h-screen`}
+        suppressHydrationWarning
+      >
         <Toaster />
         <ReactQueryProvider>
           <AuthProvider>{children}</AuthProvider>
