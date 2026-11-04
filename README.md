@@ -4,7 +4,7 @@ A full-stack Persian (RTL) blog with a public reading side and an author dashboa
 
 ![Home Page](public/home-page.png)
 ![Dashboard](public/dashboard.png)
-![Posts](public/posts-.png)
+![Posts](public/posts.png)
 
 ## Features
 
