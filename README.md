@@ -2,8 +2,8 @@
 
 A full-stack Persian (RTL) blog with a public reading side and an author dashboard. Readers browse, search and filter posts by category, like and bookmark them and leave comments; signed-in users manage posts, categories, comments and users from a dashboard with stats and charts.
 
-![Home Page](home-page-.png)
-![Dashboard](dashboard-.png)
+![Home Page](home-page.png)
+![Dashboard](dashboard.png)
 ![Posts](posts-.png)
 
 
