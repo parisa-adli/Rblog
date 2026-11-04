@@ -2,36 +2,37 @@
 
 A full-stack Persian (RTL) blog with a public reading side and an author dashboard. Readers browse, search and filter posts by category, like and bookmark them and leave comments; signed-in users manage posts, categories, comments and users from a dashboard with stats and charts.
 
-![Home Page](home-page.png)
-![Dashboard](dashboard.png)
-![Posts](posts-.png)
-
-
+![Home Page](public/home-page.png)
+![Dashboard](public/dashboard.png)
+![Posts](public/posts-.png)
 
 ## Features
 
 **Blog**
+
 - Home page with featured, latest and popular posts; post list with search, category filter and pagination
 - Post detail pages by slug with related posts, likes, bookmarks and comments with replies
 - Server-side rendering for fast, SEO-friendly pages
 - About page, custom loading, error and 404 pages
 
 **Dashboard**
+
 - Overview with stat cards, analytics chart, category donut, latest posts, drafts and recent activity (Recharts)
 - Create, edit and delete posts with cover image upload
 - Manage categories, review comments (approve / reject), list users
 - Light and dark theme, mobile tab bar
 
 **Auth**
+
 - Sign up and sign in with email and password
 - JWT access and refresh tokens in httpOnly cookies, route protection with Next.js middleware
 
 ## Tech stack
 
-| Part | Stack |
-|------|-------|
+| Part               | Stack                                                                                                              |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | Client (`client/`) | Next.js 15 (App Router), React 19, Tailwind CSS, TanStack Query, React Hook Form + Yup, Axios, Recharts, Heroicons |
-| Server (`server/`) | Node.js, Express, MongoDB + Mongoose, Joi, JWT, bcrypt, Multer |
+| Server (`server/`) | Node.js, Express, MongoDB + Mongoose, Joi, JWT, bcrypt, Multer                                                     |
 
 ## Getting started
 
