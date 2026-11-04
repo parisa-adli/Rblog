@@ -24,10 +24,10 @@ const quickLink = `flex items-center gap-x-3 rounded-lg px-4 py-2 text-sm text-s
 
 // Visibility per context: xl = image 1, lg = image 2 (narrow), the Drawer (<lg) shows everything useful.
 export default function SideBar({ onClose }) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
-    <div className="flex flex-col h-screen overflow-y-auto p-4 xl:p-5">
+    <div className="flex flex-col min-h-screen p-4 xl:p-5">
       <div className="flex items-center justify-between mb-6 xl:mb-8 px-2 pt-2">
         <Logo />
         {onClose && (
@@ -96,13 +96,14 @@ export default function SideBar({ onClose }) {
         </Link>
       </div>
 
-      <Link
-        href="/signin"
-        className={`flex items-center gap-x-3 rounded-xl px-4 py-2.5 text-sm font-medium text-secondary-600 hover:text-error ${focusRing}`}
+      <button
+        type="button"
+        onClick={logout}
+        className={`flex w-full items-center gap-x-3 rounded-xl px-4 py-2.5 text-sm font-medium text-secondary-600 hover:text-error ${focusRing}`}
       >
         <ArrowLeftStartOnRectangleIcon className="w-5 h-5" aria-hidden="true" />
         خروج
-      </Link>
+      </button>
 
       {/* User card — lg + drawer (xl has it in the top bar) */}
       <Link

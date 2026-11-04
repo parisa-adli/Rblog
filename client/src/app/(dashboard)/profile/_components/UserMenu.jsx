@@ -15,7 +15,7 @@ import { focusRing } from "@/app/(blogs)/_components/home/PostMeta";
 const itemClass = `flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm text-secondary-700 hover:bg-secondary-100 ${focusRing}`;
 
 export default function UserMenu() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
   const ref = useOutsideClick(close);
@@ -41,12 +41,20 @@ export default function UserMenu() {
         >
           <Link href="/profile" role="menuitem" className={itemClass} onClick={close}>
             <UserIcon className="w-4 h-4" aria-hidden="true" />
-            پروفایل
+            داشبورد
           </Link>
-          <Link href="/signin" role="menuitem" className={`${itemClass} hover:text-error`} onClick={close}>
+          <button
+            type="button"
+            role="menuitem"
+            className={`${itemClass} w-full hover:text-error`}
+            onClick={() => {
+              close();
+              logout();
+            }}
+          >
             <ArrowLeftStartOnRectangleIcon className="w-4 h-4" aria-hidden="true" />
             خروج
-          </Link>
+          </button>
         </div>
       )}
     </div>

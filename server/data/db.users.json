@@ -44,5 +44,16 @@
     "createdAt": "2024-08-09T19:59:30.991Z",
     "updatedAt": "2024-08-10T06:20:57.006Z",
     "__v": 0
+  },
+  {
+    "_id": "66b675228517385605104e99",
+    "name": "کاربر دمو",
+    "email": "demo@demo.com",
+    "password": "$2a$10$Kz9HFxaHs61Moitx6PT6XOtbz9QJRnFrXbgnCuMW1y/oBru/WjMZK",
+    "bookmarkedPosts": [],
+    "likedPosts": [],
+    "createdAt": "2024-08-09T19:59:30.991Z",
+    "updatedAt": "2024-08-10T06:20:57.006Z",
+    "__v": 0
   }
 ]

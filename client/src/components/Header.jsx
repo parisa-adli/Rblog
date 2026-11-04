@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import NavLink from "./NavLink";
-import Avatar from "@/ui/Avatar";
+import UserMenu from "@/app/(dashboard)/profile/_components/UserMenu";
 import ThemeToggle from "@/app/(dashboard)/profile/_components/ThemeToggle";
 import { focusRing } from "@/app/(blogs)/_components/home/PostMeta";
 
@@ -43,13 +43,7 @@ function Header() {
             className={`p-2 text-secondary-600 hover:text-primary-900 hover:bg-secondary-100 rounded-full transition-colors ${focusRing}`}
           />
           {user ? (
-            <Link
-              href="/profile"
-              className={`flex items-center gap-x-2 text-sm font-bold text-secondary-700 hover:text-primary-900 transition-colors ${focusRing}`}
-            >
-              <Avatar src={user.avatarUrl} width={32} />
-              <span className="hidden md:inline">داشبورد</span>
-            </Link>
+            <UserMenu />
           ) : (
             <Link
               href="/signin"

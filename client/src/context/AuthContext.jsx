@@ -1,6 +1,6 @@
 "use client";
 
-import { getUserApi, signinApi, signupApi } from "@/services/authService";
+import { getUserApi, logoutApi, signinApi, signupApi } from "@/services/authService";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import toast from "react-hot-toast";
@@ -42,6 +42,8 @@ const authReducer = (state, action) => {
         user: action.payload,
         isAuthenticated: true,
       };
+    case "logout":
+      return { ...initialState, isLoading: false };
   }
 };
 
@@ -81,10 +83,20 @@ export default function AuthProvider({ children }) {
     }
   }
 
+  async function logout() {
+    try {
+      await logoutApi();
+      dispatch({ type: "logout" });
+      router.push("/signin");
+      router.refresh(); // drop cached server components rendered with the old cookies
+    } catch (error) {
+      toast.error(error?.response?.data?.message ?? "خروج ناموفق بود");
+    }
+  }
+
   async function getUser() {
     dispatch({ type: "loading" });
     try {
-      await new Promise((res) => setTimeout(res, 3000));
       const { user } = await getUserApi();
       dispatch({ type: "user/loaded", payload: user });
       // console.log(user);
@@ -104,7 +116,7 @@ export default function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, isLoading, signin, signup }}
+      value={{ user, isAuthenticated, isLoading, signin, signup, logout }}
     >
       {children}
     </AuthContext.Provider>
