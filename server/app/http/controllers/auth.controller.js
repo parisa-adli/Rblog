@@ -163,7 +163,7 @@ class UserAuthController extends Controller {
       httpOnly: true,
       signed: true,
       sameSite: "Lax",
-      secure: true,
+      secure: process.env.NODE_ENV === "development" ? false : true, // must match how the cookies were set
       path: "/",
       domain: process.env.DOMAIN,
     };

@@ -12,8 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div className="min-h-screen bg-secondary-100 lg:flex">
-      <aside className="hidden lg:block w-56 xl:w-64 shrink-0 sticky top-0 h-screen border-l border-secondary-200/70 bg-secondary-0">
-        <SideBar />
+      {/* aside stretches to the full page height; the inner wrapper keeps the menu pinned while scrolling */}
+      <aside className="hidden lg:block w-56 xl:w-64 shrink-0 border-l border-secondary-200/70 bg-secondary-0">
+        <div className="sticky top-0">
+          <SideBar />
+        </div>
       </aside>
       <div className="flex-1 min-w-0">
         <Header />

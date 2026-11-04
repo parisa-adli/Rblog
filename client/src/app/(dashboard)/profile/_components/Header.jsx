@@ -80,9 +80,19 @@ export default function Header() {
       >
         {/* dim only the controls while loading; the opaque background must stay solid */}
         <div
-          className={`flex items-center gap-2 md:gap-4 px-4 md:px-6 xl:px-8 py-3 md:py-4 transition ${isLoading ? "opacity-80" : ""}`}
+          className={`relative flex items-center gap-2 md:gap-4 px-4 md:px-6 xl:px-8 py-3 md:py-4 transition ${isLoading ? "opacity-80" : ""}`}
         >
-          <Logo className="md:hidden" />
+          {/* mobile: menu right, logo centered, actions left */}
+          <button
+            type="button"
+            className={`${iconBtn} md:hidden`}
+            aria-label="باز کردن منو"
+            aria-expanded={drawerOpen}
+            onClick={() => setDrawerOpen(true)}
+          >
+            <Bars3Icon className="w-6 h-6" aria-hidden="true" />
+          </button>
+          <Logo className="md:hidden absolute left-1/2 -translate-x-1/2" />
           <button
             type="button"
             className={`${iconBtn} hidden md:grid lg:hidden`}
@@ -106,15 +116,6 @@ export default function Header() {
             <div className="hidden md:block">
               <UserMenu />
             </div>
-            <button
-              type="button"
-              className={`${iconBtn} md:hidden`}
-              aria-label="باز کردن منو"
-              aria-expanded={drawerOpen}
-              onClick={() => setDrawerOpen(true)}
-            >
-              <Bars3Icon className="w-6 h-6" aria-hidden="true" />
-            </button>
           </div>
         </div>
       </header>
